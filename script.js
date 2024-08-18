@@ -6,6 +6,9 @@ const image2 = document.getElementById('image2');
 const image3 = document.getElementById('image3');
 const textBox = document.getElementById('text-box');
 
+const DARK_THEME = 'dark'
+const LIGHT_THEME = 'light'
+
 // Dark or Light Images
 function imageMode(color) {
     image1.src = `img/undraw_love_it_heart_dxlp_${color}.svg`;
@@ -20,11 +23,11 @@ function toggleLightDarkMode(isDark){
     toggleIcon.children[0].textContent = isDark ? 'Dark Mode': 'Light Mode';
     if(isDark){
         toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
-        imageMode('dark');
+        imageMode(DARK_THEME);
     }
     else{
         toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
-        imageMode('light');
+        imageMode(LIGHT_THEME);
     }
 }
 
@@ -33,14 +36,14 @@ function switchTheme(event) {
     //this return the true/false from toggle
     if (event.target.checked) {
         //key , value
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
+        document.documentElement.setAttribute('data-theme', DARK_THEME);
+        localStorage.setItem('theme', DARK_THEME);
         toggleLightDarkMode(true);
     }
     //light mode
     else{
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
+        document.documentElement.setAttribute('data-theme', LIGHT_THEME);
+        localStorage.setItem('theme', LIGHT_THEME);
         lightMode();
         toggleLightDarkMode(false);
     }
@@ -54,7 +57,7 @@ const currentTheme = localStorage.getItem('theme');
 if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 
-    if (currentTheme === 'dark') {
+    if (currentTheme === DARK_THEME) {
         toggleSwitch.checked = true;
         toggleLightDarkMode(true);
       }
